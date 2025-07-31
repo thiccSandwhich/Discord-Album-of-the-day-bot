@@ -14,11 +14,14 @@ intents = discord.Intents.default()
 client = discord.Client(intents=intents)
 
 
-#code that retrieves the album and posts it to the proper channel in discord@tasks.loop(hours=24)
+#code that retrieves the album and posts it to the proper channel in discord
+@tasks.loop(hours=24)
 async def album():
     if datetime.weekday(datetime.today()) != 6 and datetime.weekday(datetime.today()) != 5:
-        # connects to the page to hopefully prevent the project from getting paused        print('Getting album')
-        url = 'https://1001albumsgenerator.com/onthewalla2'        message_channel = client.get_channel(int(CHANNEL))
+        # connects to the page to hopefully prevent the project from getting paused        
+        url = 'https://1001albumsgenerator.com/onthewalla2'        
+        
+        message_channel = client.get_channel(int(CHANNEL))
         webbrowser.open(url, new=1)
         time.sleep(10)
         keyboard.press_and_release('ctrl+w')
